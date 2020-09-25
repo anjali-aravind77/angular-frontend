@@ -1,0 +1,32 @@
+<div class="bgcolor">
+        <div class="container">
+            <div class="row">
+            <div class="col"> 
+        
+            </div>
+        <div class="col">
+        
+            <h1>WELCOME TO CITY BANK</h1>
+        </div>
+        </div>
+       
+        <div class="jumbotron">
+        <!-- {{name_ac}} -->
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <div class="form-group">
+              <label for="acno">Account Number</label>
+              <input formControlName="acnom" type="text" name="acno1" class="form-control" id="acno1" aria-describedby="emailHelp">
+              <div *ngIf="getError('acnom')" class="error"> enter a valid accnt num </div></div>
+            <div class="form-group">
+              <label for="pwd">Password</label>
+              <input formControlName="pwds" type="password" name="pswd1" class="form-control" id="pwd1">
+              <div *ngIf="getError('pwds')" class="error"> password is invalid </div> 
+            </div>
+            <button type="submit" class="btn btn-primary" value="Submit">Login</button>
+            <a routerLink="register">Create a new Account</a>
+         
+          </form>
+           
+        </div>
+      </div>
+     

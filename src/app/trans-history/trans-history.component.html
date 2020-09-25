@@ -1,0 +1,30 @@
+<div class="container">
+    <h1>Welcome {{dataservice.currentUser.name}} </h1>
+    <div class="jumbotron">
+<h4>
+    Previous Transactions
+</h4>
+ 
+
+<table class="table">
+    <thead>
+      <tr>
+        
+        <th scope="col">Amount</th>
+        <th scope="col">Type</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let transaction of transactions">
+       
+        <td>{{transaction.tamount}}</td>
+        <td>{{transaction.type}} </td>
+      
+      </tr>
+     
+    </tbody>
+  </table>
+
+</div>
+</div>
