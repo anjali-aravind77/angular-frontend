@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { RegisterComponent } from './register/register.component';
 import { TransHistoryComponent } from './trans-history/trans-history.component';
+import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { TransHistoryComponent } from './trans-history/trans-history.component';
     LoginComponent,
     DashboardComponent,
     RegisterComponent,
-    TransHistoryComponent
+    TransHistoryComponent,
+    DeleteConfirmationComponent
   ],
   imports: [
     BrowserModule,

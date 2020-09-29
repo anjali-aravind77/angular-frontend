@@ -16,11 +16,14 @@
       </tr>
     </thead>
     <tbody>
+      <app-delete-confirmation (onDelete)="onDelete($event)" (onCancel)="onCancel($event)" [id]="idToBeDeleted"></app-delete-confirmation>
       <tr *ngFor="let transaction of transactions">
        
         <td>{{transaction.amount}}</td>
         <td>{{transaction.typeOfTransaction}} </td>
-        <td (click)= "delete(transaction)">delete</td>
+        <td>
+          <button class="btn btn-primary" (click)= "showConfirm(transaction._id)"> Delete </button>
+        </td>
       
       </tr>
      

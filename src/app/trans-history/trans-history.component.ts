@@ -9,6 +9,7 @@ import { DataService } from '../services/data.service';
 export class TransHistoryComponent implements OnInit {
   transactions: [];
   name;
+  idToBeDeleted = "";
   constructor(public dataservice: DataService) {
     this.name = localStorage.getItem("name");
     this.getTransactions();
@@ -22,12 +23,20 @@ export class TransHistoryComponent implements OnInit {
   }
   ngOnInit(): void {
   }
-  delete(transaction) {
-   this.dataservice.deleteTransaction(transaction._id)
-   .subscribe((data:any) => {
-      alert(data.message);
-      this.getTransactions();
-   })
+
+ onDelete(e) {
+  this.dataservice.deleteTransaction(e)
+  .subscribe((data:any) => {
+     alert(data.message);
+     this.getTransactions();
+     this.idToBeDeleted="";
+  })
+ }
+ onCancel(e) {
+   this.idToBeDeleted = "";
+ }
+ showConfirm(id) {
+   this.idToBeDeleted = id;
  }
 
 }
