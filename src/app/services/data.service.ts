@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+const options = {
+  withCredentials: true
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -39,7 +43,10 @@ export class DataService {
   }
   
   getTransactions() {
-    return this.accountDetails[this.currentUser.accno].transactions;
+    return this.http.get("http://localhost:3000/getTransactions", options);
+  }
+  deleteTransaction(id) {
+    return this.http.delete("http://localhost:3000/getTransactions/"+id , options);
   }
   register(name, accno, pin, password, balance) {
     const data = {
@@ -53,81 +60,27 @@ export class DataService {
     const data = {
       accno: accnum, password
     }
-    return this.http.post("http://localhost:3000/login", data);
+    return this.http.post("http://localhost:3000/login", data, options);
     
   }
   deposit(accno, pin, balance) {
-    this.msg = "";
     // var data = this.accountDetails;
-    var amount = parseInt(balance);
-    var account_num = parseInt(accno);
+    // var amount = parseInt(balance);
+    // var pin1 = parseInt(pin)
+    // var account_num = parseInt(accno);
     const data = {
-      accno: account_num, pin, balance: amount
+      accno, pin, amount: balance
     }
-    // if (account_num in data) {
-    //   var user_pin = data[account_num].pin;
-    //   if (user_pin == pin) {
-    //     data[account_num].balance += amount;
-    //     this.msg = "Amount of Rs." + amount + " is credited to your account. Available balance is " + data[account_num].balance + ".";
-    //     // alert(data[account_num].balance);
-
-    //     data[account_num].transactions.push({
-    //       tamount: amount,
-    //       type: "deposit"
-    //     })
-    //     this.saveDetails();
-    //     return true;
-    //   }
-    //   else {
-    //     alert("incorrect pin");
-
-    //   }
-    // }
-    return this.http.post("http://localhost:3000/deposit", data);
+   
+    return this.http.post("http://localhost:3000/deposit", data, options);
 
   }
   err_msg;
   withdrawal(accno, pin, balance) {
-    this.msg = "";
-    var data = this.accountDetails;
-    var amount = parseInt(balance);
-    var account_num = parseInt(accno);
-    if (account_num in data) {
-      var user_pin = data[account_num].pin;
-      if (user_pin == pin) {
-        this.err_msg = "";
-        if (amount < data[account_num].balance) {
-          data[account_num].balance -= amount;
-          this.msgw = "Amount of Rs." + amount + " is debited from your account. Available balance is " + data[account_num].balance + ".";
-          //   alert(data[account_num].balance);
-
-          data[account_num].transactions.push({
-            tamount: amount,
-            type: "withdrawal"
-          })
-          this.saveDetails();
-          return {
-            status: true,
-            message: "amount debited",
-            bal: data[account_num].balance
-          }
-        }
-        else {
-          this.err_msg = "You have insufficient balance."
-        }
-      }
-      else {
-        alert("incorrect pin");
-
-      }
-    }
-    else {
-      return {
-        status: false,
-        message: "Invalid account"
-      }
-    }
-
-
+  const data = {
+    accno, pin, amount: balance
+  }
+ 
+  return this.http.post("http://localhost:3000/withdrawal", data, options);
   }
 }

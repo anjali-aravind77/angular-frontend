@@ -41,19 +41,26 @@ export class DashboardComponent implements OnInit {
       this.depositForm.value.amount1)
       .subscribe((data:any) => {
         if(data) {
-        alert("amount credited");
+        alert(data.message);
         }
+      }, data => {
+        alert(data.error.message);
       })
 
-  }
+  } 
 
 withdrawal(){
 
-const result = this.dataservice.withdrawal(this.withdrawForm.value.ac_numw, this.withdrawForm.value.pin_numw, 
-  this.withdrawForm.value.amount1w);
-  if(result){
-    alert("amount debited");
-  }
+this.dataservice.withdrawal(this.withdrawForm.value.ac_numw, this.withdrawForm.value.pin_numw, 
+  this.withdrawForm.value.amount1w)
+  .subscribe((data:any) => {
+    if(data) {
+      alert(data.message);
+    }
+  }, data => {
+    alert(data.error.message);
+  })
+  
 }
 
 }

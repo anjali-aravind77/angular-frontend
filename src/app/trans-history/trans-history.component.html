@@ -1,5 +1,5 @@
 <div class="container">
-    <h1>Welcome {{dataservice.currentUser.name}} </h1>
+    <h1>Welcome {{name}} </h1>
     <div class="jumbotron">
 <h4>
     Previous Transactions
@@ -18,8 +18,9 @@
     <tbody>
       <tr *ngFor="let transaction of transactions">
        
-        <td>{{transaction.tamount}}</td>
-        <td>{{transaction.type}} </td>
+        <td>{{transaction.amount}}</td>
+        <td>{{transaction.typeOfTransaction}} </td>
+        <td (click)= "delete(transaction)">delete</td>
       
       </tr>
      
